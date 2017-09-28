@@ -9,7 +9,7 @@ RSpec.describe AdvertisementsController, type: :controller do
       copy: RandomData.random_paragraph,
       price: 99
       )
-    end
+  end
 
   describe "GET #index" do
     it "returns http success" do
@@ -23,7 +23,6 @@ RSpec.describe AdvertisementsController, type: :controller do
     end
   end
   
-
   describe "GET #show" do
     it "returns http success" do
       get :show, params: { id: my_ad.id } 
