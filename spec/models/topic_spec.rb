@@ -20,6 +20,12 @@ RSpec.describe Topic, type: :model do
 
      it "is public by default" do
        expect(topic.public).to be(true)
+       
+     it "should format the users name" do
+        user.name "bloc user"
+        user.save
+        expect(user.name).to eq "Bloc User"
      end
    end
+
 end

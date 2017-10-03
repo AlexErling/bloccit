@@ -45,6 +45,8 @@
  
  gem 'thor', '0.19.1'
  
+ gem 'bcrypt' 
+ 
  group :development do
    gem 'listen', '~> 3.0.5'
  end
