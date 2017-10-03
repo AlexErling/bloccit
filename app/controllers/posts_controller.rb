@@ -8,9 +8,6 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
   end
 
-  def edit
-  end
-  
   def create
    @post = Post.new
    @post.title = params[:post][:title]
