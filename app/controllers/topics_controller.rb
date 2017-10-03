@@ -18,10 +18,11 @@ class TopicsController < ApplicationController
     @topic.public = params[:topic][:public]
 
     if @topic.save
+      flash[:notice] = "Topic was saved."      
       redirect_to @topic, notice: "Topic was saved successfully."
     else
       flash.now[:alert] = "Error creating topic. Please try again."
-      render.new
+      render :new
     end
   end
 
