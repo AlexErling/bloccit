@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+    
+   let(:new_user_attributes) do
+     {
+         name: "BlocHead",
+         email: "blochead@bloc.io",
+         password: "blochead",
+         password_confirmation: "blochead"
+     }
+   end    
+     
    let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
    it { is_expected.to validate_presence_of(:name) }
    it { is_expected.to validate_length_of(:name).is_at_least(1) }
