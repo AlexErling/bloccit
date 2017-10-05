@@ -1,7 +1,9 @@
-
 class User < ApplicationRecord
+  has_many :posts
+  
   before_save { self.email = email.downcase }
   before_save { self.name = self.name.split.map!{|n| n.capitalize}.join(' ') if self.name }
+  before_save { self.role ||= :member }
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   NAME_REGEX = /\A[A-Z]\w+(\s[A-Z]\w+)?\z/
@@ -16,4 +18,6 @@ class User < ApplicationRecord
             format: { with: EMAIL_REGEX }
 
   has_secure_password
+  
+  enum role: [:member, :admin, :moderator]
 end
