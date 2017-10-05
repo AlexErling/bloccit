@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
-    let(:name) { RandomData.random_sentence }
+   let(:name) { RandomData.random_sentence }
    let(:description) { RandomData.random_paragraph }
    let(:public) { true }
    let(:topic) { Topic.create!(name: name, description: description) }
@@ -20,12 +20,9 @@ RSpec.describe Topic, type: :model do
 
      it "is public by default" do
        expect(topic.public).to be(true)
-       
-     it "should format the users name" do
-        user.name "bloc user"
-        user.save
-        expect(user.name).to eq "Bloc User"
      end
    end
 
 end
+
+
