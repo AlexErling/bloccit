@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   before_save { self.email = email.downcase }
   before_save { self.name = self.name.split.map!{|n| n.capitalize}.join(' ') if self.name }
