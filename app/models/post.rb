@@ -8,6 +8,7 @@ class Post < ApplicationRecord
     after_create :create_favorite
     after_create :create_vote
     default_scope { order('rank DESC') }
+    scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
     
     scope :order_by_title, -> {order('title DESC')}
     
@@ -37,10 +38,16 @@ class Post < ApplicationRecord
      update_attribute(:rank, new_rank)
    end   
    
-   def create_favorite
-       Favorite.create(post: self, user: self.user)
-       FavoriteMailer.new_post(self).deliver_now
-   end
+  def create_favorite
+    favorites.create(post: self, user: user)
+    send_favorite_emails
+  end
+
+  def send_favorite_emails
+    self.favorites.each do |favorite|
+      FavoriteMailer.new_post(favorite.user, self).deliver_now
+    end
+  end
    
    private
    
